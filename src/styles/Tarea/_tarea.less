@@ -1,0 +1,386 @@
+@import "../_variables";
+.tarea{
+	border: 2px solid @color__main;
+	padding: 15px 15px 0px;
+	& &-content{
+		display: flex;
+		align-items: stretch;
+		justify-content: flex-start;
+
+		.avatar-container{
+			width: 115px;
+			min-width: 115px;
+
+			.avatar{
+				width: 100px;
+				height: 100px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: @color__main;
+				border-radius: 50%;
+				color: @color__white;
+				font-size: 50px;
+				font-weight: 400;
+			}
+		}
+		.info-tarea{
+			width: 100%;
+			color: @color__text-gray;
+			text-transform: uppercase;
+
+			h2{
+				color: @color__black;
+				margin-bottom: 8px;
+				font-weight: 700;
+			}
+
+			> div{
+				margin-bottom: 4px;
+
+				span{
+					color: @color__main;
+				}
+			}
+
+			.status-priority{
+				display: flex;
+				align-items: flex-start;
+				justify-content: flex-start;
+			}
+
+			.status{
+				background: @color__main;
+				display: inline-block;
+				padding: 5px 10px;
+				color: @color__white;
+				text-transform: uppercase;
+				font-weight: 500;
+				letter-spacing: .02rem;
+				margin-right: 10px;
+				span{
+					color: @color__white;
+				}
+
+				&.pendiente{
+					background: @color__status-pendiente;
+				}
+				&.done{
+					background: @color__status-done;
+				}
+				&.vencido{
+					background: @color__status-vencido;
+				}
+			}
+
+			.date-place{
+				display: flex;
+				align-items: flex-start;
+				justify-content: flex-start;
+
+				div {
+					padding-right: 8px;
+					border-right: 1px solid @color__text-gray;
+
+					+ div{
+						padding-left: 8px;
+					}
+
+					&:last-child{
+						border-right: 0;
+						padding-right: 0;
+					}
+				}
+			}
+			.responsable{
+				color: @color__black;
+				span{
+					color: @color__black;
+				}
+			}
+			.prioridad{
+				background: @color__main;
+				display: inline-block;
+				padding: 5px 10px;
+				color: @color__white;
+				text-transform: uppercase;
+				font-weight: 500;
+				letter-spacing: .02rem;
+				span{
+					color: @color__white;
+				}
+			}
+		}
+		.actions{
+			width: 150px;
+			min-width: 150px;
+			margin: -15px -15px 0 0;
+			display: flex;
+			align-items: flex-start;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+
+			.edit,
+			.delete{
+				width: 50%;
+				height: calc(~'50% + 20px');
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: @color__btn-edir;
+				color: @color__white;
+				font-size: 30px;
+
+				&:hover{
+					background: darken(@color__btn-edir, 10%);
+				}
+			}
+			.delete{
+				background: @color__btn-delete;
+
+				&:hover{
+					background: darken(@color__btn-delete, 10%);
+				}
+			}
+			.done{
+				width: 100%;
+				height: calc(~'50% + 20px');
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: @color__btn-done;
+				color: @color__white;
+				font-size: 30px;
+				&:hover{
+					background: darken(@color__btn-done, 10%);
+				}
+
+				&.listo{
+					pointer-events: none;
+					background: #e3e3e3;
+				}
+			}
+		}
+	}
+
+	&-created{
+		background: @color__gray-light;
+		color: @color__white;
+		padding: 0 20px;
+		width: calc(~'100% + 30px');
+		margin: 15px 0 0 -15px;
+		font-weight: 400;
+		font-size: 14px;
+		height: 25px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	& + &{
+		margin-top: 20px;
+	}
+
+	&.urgente{
+		border-color: @color__prioridad-urgente;
+		border-width: 4px;
+
+		.tarea-content{
+			.avatar-container{
+				.avatar{
+					background: @color__prioridad-urgente;
+				}
+			}
+			.info-tarea{
+				> div{
+					span{
+						color: @color__prioridad-urgente;
+					}
+				}
+				.status{
+					background: @color__prioridad-urgente;
+					span{
+						color: @color__white;
+					}
+				}
+				.prioridad{
+					background: @color__prioridad-urgente;
+					span{
+						color: @color__white;
+					}
+				}
+			}
+		}
+	}
+
+	&.baja{
+		border-color: @color__prioridad-baja;
+
+		.tarea-content{
+			.avatar-container{
+				.avatar{
+					background: @color__prioridad-baja;
+				}
+			}
+			.info-tarea{
+				.status{
+					span{
+						color: @color__white;
+					}
+				}
+				.prioridad{
+					background: @color__prioridad-baja;
+					span{
+						color: @color__white;
+					}
+				}
+			}
+		}
+	}
+
+	&.listo,
+	&.urgente.listo{
+		border-color: @color__status-done;
+		border-width: 2px;
+
+		.tarea-content{
+			h2{
+				color: @color__gray-light;
+			}
+			div{
+				color: @color__gray-light;
+
+				span{
+					color: @color__gray-light;
+				}
+			}
+
+			.avatar-container{
+				.avatar{
+					background: @color__gray-light;
+					color: @color__white;
+				}
+			}
+
+			.responsable{
+				color: @color__gray-light;
+				span{
+					color: @color__gray-light;
+				}
+			}
+			.info-tarea{
+				.status{
+					&.listo{
+						color: @color__white;
+						background: @color__status-done;
+						span{
+							color: @color__white;
+						}
+					}
+				}
+				.prioridad{
+					background: @color__gray-light;
+					color: @color__white;
+					span{
+						color: @color__white;
+					}
+				}
+			}
+		}
+	}
+	&.vencido,
+	&.urgente.vencido {
+		border-color: @color__gray-light;
+		border-width: 1px;
+
+		.tarea-content{
+			h2{
+				color: @color__gray-light;
+			}
+			div{
+				color: @color__gray-light;
+
+				span{
+					color: @color__gray-light;
+				}
+			}
+
+			.avatar-container{
+				.avatar{
+					background: @color__gray-light;
+					color: @color__white;
+				}
+			}
+
+			.responsable{
+				color: @color__gray-light;
+				span{
+					color: @color__gray-light;
+				}
+			}
+			.info-tarea{
+				.prioridad{
+					background: @color__gray-light;
+					color: @color__white;
+					span{
+						color: @color__white;
+					}
+				}
+			}
+		}
+
+		.actions {
+			.done {
+				background-color: @color__gray-light;
+				pointer-events: none;
+			}
+		}
+
+	}
+}
+
+
+.media-max-width((@screen__m), {
+	.tarea{
+		& &-content{
+			flex-wrap: wrap;
+			.avatar-container{
+				width: 40px;
+				min-width: 40px;
+				margin-bottom: 15px;
+				margin-top: 0;
+				margin-left: -5px;
+
+				.avatar{
+					width: 40px;
+					height: 40px;
+					font-size: 25px;
+				}
+			}
+
+			.info-tarea{
+				width: calc(~'100% - 45px');
+				min-width: calc(~'100% - 45px');
+				margin-left: 10px;
+			}
+			.actions{
+				width: calc(~'100% + 30px');
+				min-width: calc(~'100% + 30px');
+				margin: 0 -15px 0 -15px;
+				flex-wrap: nowrap;
+				padding-top: 15px;
+
+				.edit,
+				.delete,
+				.done{
+					height: 40px;
+					width: calc(~'100% / 3');
+				}
+			}
+		}
+
+		& &-created{
+			margin-top: 0;
+		}
+	}
+});

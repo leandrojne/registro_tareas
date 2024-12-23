@@ -1,0 +1,44 @@
+
+//Vars
+@max__width-page: 1200px;
+@padding__regular: 20px;
+@padding__medium: 15px;
+@padding__small: 10px;
+
+@color__main: #6b94cb;
+@color__secondary: #f7921e;
+@color__black: #333;
+@color__white: #fff;
+@color__red: #d21e1e;
+@color__green: #71e281;
+@color__purple: #d087f5;
+@color__gray-light: #c6c6c6;
+@color__text-gray: #939393;
+@color__btn-edir: #87b6cc;
+@color__btn-delete: #ff6e6d;
+@color__btn-done: #71e280;
+
+
+@color__status-pendiente: @color__secondary;
+@color__status-vencido: @color__red;
+@color__status-done: @color__green;
+@color__prioridad-normal: @color__main;
+@color__prioridad-urgente: @color__red;
+@color__prioridad-baja: @color__purple;
+
+
+
+@screen__xs: 400px;
+@screen__s: 640px;
+@screen__m: 767px;
+@screen__l: 1024px;
+@screen__xl: 1440px;
+
+
+
+.media-max-width(@break, @rules){
+	@media screen and (max-width: @break) { @rules()}
+}
+.media-min-width(@break, @rules){
+	@media screen and (min-width: @break) { @rules()}
+}

@@ -1,0 +1,92 @@
+@import "../_variables";
+input, select{
+	width: 100%;
+	height: 40px;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	font-size: 14px;
+	border: 1px solid @color__main;
+
+	&:hover,
+	&:focus{
+		border: 1px solid @color__secondary;
+		outline: none;
+	}
+}
+
+form{
+	padding: 20px;
+	border: 1px solid @color__main;
+	.fields{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		margin-bottom: 20px;
+
+		.field{
+			width: calc(~'50% - 15px');
+			&:first-child {
+				margin-right: 30px;
+			}
+
+			.react-datepicker-wrapper{
+				width: 100%;
+			}
+
+			label {
+				width: 100%;
+				display: block;
+				margin: 0 0 5px;
+			}
+
+			.error-input{
+				border-color: @color__red;
+			}
+
+			.error{
+				padding: 2px 0;
+				color: @color__red;
+				font-weight: 400;
+				font-size: 14px;
+			}
+		}
+
+		&.fullwidth{
+			.field{
+				width: 100%;
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+
+.media-max-width((@screen__s), {
+	form{
+		.fields{
+			flex-wrap: wrap;
+			margin-bottom: 0;
+			.field{
+				width: 100%;
+				margin-bottom: 15px;
+				&:first-child {
+					margin-right: 0;
+				}
+			}
+		}
+
+		button{
+			width: 100%;
+			max-width: 100%;
+
+			+ button {
+				margin-top: 10px;
+				margin-left: 0;
+
+				&.btn-cancel{
+					max-width: 100%;
+				}
+			}
+		}
+	}
+});

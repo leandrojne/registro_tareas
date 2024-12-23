@@ -1,0 +1,40 @@
+
+.container{
+	width: 100%;
+	max-width: @max__width-page;
+	padding: 0 @padding__regular;
+	margin: 0 auto;
+
+	&.full-width{
+		max-width: 100%;
+		padding: 0;
+
+		.content-center{
+			max-width: @max__width-page;
+			padding: 0 @padding__regular;
+			margin: 0 auto;
+		}
+	}
+
+	&.main-content{
+		padding-top: 40px;
+		padding-bottom: 40px;
+		min-height: calc(~'100dvh - 150px');
+	}
+}
+
+.media-max-width((@screen__s), {
+	.container{
+		padding: 0 @padding__small;
+		&.full-width{
+			.content-center{
+				padding: 0 @padding__small;
+			}
+		}
+
+		&.main-content{
+			padding-top: @padding__regular;
+			padding-bottom: @padding__regular;
+		}
+	}
+});
