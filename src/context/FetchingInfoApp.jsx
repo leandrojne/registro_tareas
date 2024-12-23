@@ -1,8 +1,8 @@
-import {createContext, useEffect, useState} from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const InfoDataContext = createContext()
 
-export const InfoDataProvider = ({ children }) =>{
+export const InfoDataProvider = ({ children }) => {
     const [taskData, setTaskData] = useState([]);
     const [priorityData, setPriorityData] = useState([]);
     const [statusData, setStatusData] = useState([]);
@@ -11,7 +11,7 @@ export const InfoDataProvider = ({ children }) =>{
     const [itemToEdit, setItemToEdit] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3030/task/priority', {
+        fetch('https://tareas.idiomavisual.com/task/priority', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -26,7 +26,7 @@ export const InfoDataProvider = ({ children }) =>{
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:3030/task/status', {
+        fetch('https://tareas.idiomavisual.com/task/status', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -41,7 +41,7 @@ export const InfoDataProvider = ({ children }) =>{
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:3030/task/users', {
+        fetch('https://tareas.idiomavisual.com/task/users', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -56,7 +56,7 @@ export const InfoDataProvider = ({ children }) =>{
     }, []);
 
     return (
-        <InfoDataContext.Provider value={{taskData, setTaskData, priorityData, statusData, users, loadingData, setLoadingData, itemToEdit, setItemToEdit}}>
+        <InfoDataContext.Provider value={{ taskData, setTaskData, priorityData, statusData, users, loadingData, setLoadingData, itemToEdit, setItemToEdit }}>
             {children}
         </InfoDataContext.Provider>
     )

@@ -30,7 +30,7 @@ export default function ItemTarea({ item }) {
             method: 'DELETE'
         };
 
-        fetch(`http://localhost:3030/task/delete/${item.id}`, requestOptions)
+        fetch(`https://tareas.idiomavisual.com/task/delete/${item.id}`, requestOptions)
             .then(() => {
                 console.log('todo OK')
             })
@@ -54,7 +54,7 @@ export default function ItemTarea({ item }) {
             body: JSON.stringify(status)
         };
 
-        fetch('http://localhost:3030/task/update_status', requestOptions)
+        fetch('https://tareas.idiomavisual.com/task/update_status', requestOptions)
             .then(() => {
                 console.log('todo OK')
             })
@@ -79,7 +79,7 @@ export default function ItemTarea({ item }) {
             body: JSON.stringify(status)
         };
 
-        fetch('http://localhost:3030/task/update_status', requestOptions)
+        fetch('https://tareas.idiomavisual.com/task/update_status', requestOptions)
             .then(() => {
                 console.log('todo OK')
             })

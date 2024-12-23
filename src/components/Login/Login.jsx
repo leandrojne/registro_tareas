@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from "../../context/LoginContext.jsx";
 import { InfoDataContext } from "../../context/FetchingInfoApp.jsx";
 import Cookies from 'js-cookie';
+import { VscError } from "react-icons/vsc";
 
 
 export default function Login() {
@@ -16,6 +17,8 @@ export default function Login() {
     const [loginUser, setLoginUser] = useState(UserInfo)
     const [formErrors, setFormErrors] = useState({})
     const [isSubmit, setIsSubmit] = useState(false);
+    const [infoErrorLogin, setInfoErrorLogin] = useState('');
+    const [errorLogin, setErrorLogin] = useState(false);
 
     useEffect(() => {
         const name = Cookies.get('UserLogin');
@@ -30,10 +33,9 @@ export default function Login() {
                 body: JSON.stringify(loginUser)
             };
 
-            fetch('http://localhost:3030/task/login', requestOptions)
+            fetch('https://tareas.idiomavisual.com/task/login', requestOptions)
                 .then(response => response.json())
                 .then((response) => {
-
                     if (response.login) {
                         setUserLogin({
                             firstName: response.firstName,
@@ -52,7 +54,8 @@ export default function Login() {
                         }
                         )
                     } else {
-                        alert(response.msj)
+                        setInfoErrorLogin(response.msj)
+                        showError()
                     }
                 })
                 .catch((error) => {
@@ -72,6 +75,7 @@ export default function Login() {
         })
     }
 
+
     const validate = (values) => {
         const errors = {};
         if (!values.email) {
@@ -84,6 +88,13 @@ export default function Login() {
         }
         return errors;
     };
+
+    const showError = () => {
+        setErrorLogin(true)
+        setTimeout(() => {
+            setErrorLogin(false)
+        }, 5000);
+    }
 
     const sendData = () => {
         setFormErrors(validate(loginUser));
@@ -106,6 +117,13 @@ export default function Login() {
                     </div>
                     :
                     <>
+                        {
+                            errorLogin &&
+                            <div className="info_error">
+                                <VscError />
+                                {infoErrorLogin}
+                            </div>
+                        }
                         <h1>Iniciar Sesión</h1>
                         <div className="login-form">
                             <form>
@@ -141,6 +159,25 @@ export default function Login() {
                                 </div>
                                 <button type="submit" className="btn" onClick={login}>Log In</button>
                             </form>
+                        </div>
+
+
+                        <h2 className='test-title'>Usuarios de Prueba:</h2>
+                        <div className="user-pass-test">
+                            <div className="info">
+                                <h3>user01</h3>
+                                <ul>
+                                    <li> emai: user@user01.com</li>
+                                    <li>pass: User12345*</li>
+                                </ul>
+                            </div>
+                            <div className="info">
+                                <h3>user02</h3>
+                                <ul>
+                                    <li> emai: user@user02.com</li>
+                                    <li>pass: User12345*</li>
+                                </ul>
+                            </div>
                         </div>
                     </>
             }

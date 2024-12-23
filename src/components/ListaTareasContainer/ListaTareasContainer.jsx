@@ -1,9 +1,9 @@
 import ItemTarea from "../ItemTarea/ItemTarea.jsx";
-import React, {useContext, useEffect, useState} from "react";
-import {InfoDataContext} from "../../context/FetchingInfoApp.jsx";
+import React, { useContext, useEffect, useState } from "react";
+import { InfoDataContext } from "../../context/FetchingInfoApp.jsx";
 import { IoArchiveOutline } from "react-icons/io5";
-import {FaClipboardList} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import { FaClipboardList } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function ListaTareasContainer() {
 
@@ -13,24 +13,24 @@ export default function ListaTareasContainer() {
 
     useEffect(() => {
         setLoadingData(true)
-            fetch('http://localhost:3030/task/tasks', {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+        fetch('https://tareas.idiomavisual.com/task/tasks', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => response.json())
+            .then((data) => {
+                setTareas(data)
             })
-                .then(response => response.json())
-                .then((data) => {
-                    setTareas(data)
-                })
-                .catch(error => {
-                    throw error
-                })
-                .finally(()=>{
-                    setLoadingData(false)
-                })
+            .catch(error => {
+                throw error
+            })
+            .finally(() => {
+                setLoadingData(false)
+            })
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:3030/task/tasks', {
+        fetch('https://tareas.idiomavisual.com/task/tasks', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -51,16 +51,16 @@ export default function ListaTareasContainer() {
                     ?
                     tareas.length > 0
                         ?
-                        tareas.map((item)=>{
-                           return <ItemTarea key={ item.id } item={item} date={startDate}/>
+                        tareas.map((item) => {
+                            return <ItemTarea key={item.id} item={item} date={startDate} />
                         })
                         :
                         <div className='empty-tasks'>
                             <div className='content'>
-                                <IoArchiveOutline className='icon'/>
+                                <IoArchiveOutline className='icon' />
                                 <span>No hay tareas disponibles</span>
                                 <Link to='/form/add_task' className='add-task'>
-                                    <span>Agregar una tarea</span> <span className='add-icon'><FaClipboardList/></span>
+                                    <span>Agregar una tarea</span> <span className='add-icon'><FaClipboardList /></span>
                                 </Link>
                             </div>
                         </div>

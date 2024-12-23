@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from "react";
-import {InfoDataContext} from "../../context/FetchingInfoApp.jsx";
+import React, { useContext, useEffect, useState } from "react";
+import { InfoDataContext } from "../../context/FetchingInfoApp.jsx";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import  es  from 'date-fns/locale/es';
+import es from 'date-fns/locale/es';
 import { useNavigate } from "react-router-dom";
-import {LoginContext} from "../../context/LoginContext.jsx";
+import { LoginContext } from "../../context/LoginContext.jsx";
 import Login from "../Login/Login.jsx";
 registerLocale('es', es);
 
@@ -36,14 +36,14 @@ export default function AddNewTask() {
                 body: JSON.stringify(inputsForm)
             };
 
-            fetch('http://localhost:3030/task/add', requestOptions)
-                .then(()=>{
+            fetch('https://tareas.idiomavisual.com/task/add', requestOptions)
+                .then(() => {
                     console.log('todo OK')
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-                .finally(()=>{
+                .finally(() => {
                     setInputsForm(usuario)
                     setLoadingData(false)
                     goBackLink(-1)
@@ -161,13 +161,13 @@ export default function AddNewTask() {
                                                 <div className="field">
                                                     <label htmlFor="prioridad">Prioridad</label>
                                                     <select name="prioridad" id="prioridad" defaultValue="-"
-                                                            className={formErrors.prioridad && 'error-input'}
-                                                            onChange={handleInputs}>
+                                                        className={formErrors.prioridad && 'error-input'}
+                                                        onChange={handleInputs}>
                                                         <option value="">seleccione una opcion</option>
                                                         {
                                                             priorityData?.map((item) => {
                                                                 return <option value={item._priority} name={item._priority}
-                                                                               key={item.id}>{item._priority}</option>
+                                                                    key={item.id}>{item._priority}</option>
                                                             })
                                                         }
                                                     </select>
@@ -176,14 +176,14 @@ export default function AddNewTask() {
                                                 <div className="field">
                                                     <label htmlFor="responsable">Responsable</label>
                                                     <select name="responsable"
-                                                            id="responsable"
-                                                            className={formErrors.responsable && 'error-input'}
-                                                            onChange={handleInputs}>
+                                                        id="responsable"
+                                                        className={formErrors.responsable && 'error-input'}
+                                                        onChange={handleInputs}>
                                                         <option value="">seleccione una opcion</option>
                                                         {
                                                             users?.map((item) => {
                                                                 return <option value={item.first_name} name={item.first_name}
-                                                                               key={item.id}>{item.first_name}</option>
+                                                                    key={item.id}>{item.first_name}</option>
                                                             })
                                                         }
                                                     </select>
