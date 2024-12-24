@@ -1,16 +1,16 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import {InfoDataContext} from "../../context/FetchingInfoApp.jsx";
+import { InfoDataContext } from "../../context/FetchingInfoApp.jsx";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import  es  from 'date-fns/locale/es';
+import es from 'date-fns/locale/es';
 import Login from "../Login/Login.jsx";
-import {LoginContext} from "../../context/LoginContext.jsx";
+import { LoginContext } from "../../context/LoginContext.jsx";
 registerLocale('es', es);
 
 export default function UpdateTask() {
     const goBackLink = useNavigate();
-    const { priorityData, users, statusData, loadingData, setLoadingData, itemToEdit  } = useContext(InfoDataContext)
+    const { priorityData, users, statusData, loadingData, setLoadingData, itemToEdit } = useContext(InfoDataContext)
     const [dateEnd, setDateEnd] = useState()
     const dateEdit = Object.keys(itemToEdit).length > 0 ? new Date(itemToEdit.date_end) : '';
     const { userLogin } = useContext(LoginContext)
@@ -39,7 +39,7 @@ export default function UpdateTask() {
         status: 'pendiente',
         lugar: '',
         prioridad: '',
-        responsable:'',
+        responsable: '',
         createdBy: ''
     }
     const [inputsForm, setInputsForm] = useState(usuario)
@@ -56,14 +56,14 @@ export default function UpdateTask() {
                 body: JSON.stringify(inputsForm)
             };
 
-            fetch('http://localhost:3030/task/update', requestOptions)
-                .then(()=>{
+            fetch('https://tareas.idiomavisual.com/task/update', requestOptions)
+                .then(() => {
                     console.log('todo OK !!!!')
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-                .finally(()=>{
+                .finally(() => {
                     setInputsForm(usuarioEmpty)
                     setLoadingData(false)
                     goBackLink(-1)
@@ -190,13 +190,13 @@ export default function UpdateTask() {
                                                     <div className="field">
                                                         <label htmlFor="prioridad">Prioridad</label>
                                                         <select name="prioridad" id="prioridad"
-                                                                defaultValue={inputsForm.prioridad}
-                                                                onChange={handleInputs}>
+                                                            defaultValue={inputsForm.prioridad}
+                                                            onChange={handleInputs}>
                                                             {
                                                                 priorityData?.map((item) => {
                                                                     return <option value={item._priority}
-                                                                                   name={item._priority}
-                                                                                   key={item.id}>{item._priority}</option>
+                                                                        name={item._priority}
+                                                                        key={item.id}>{item._priority}</option>
                                                                 })
                                                             }
                                                         </select>
@@ -204,13 +204,13 @@ export default function UpdateTask() {
                                                     <div className="field">
                                                         <label htmlFor="responsable">Responsable</label>
                                                         <select name="responsable" id="responsable"
-                                                                defaultValue={inputsForm.responsable}
-                                                                onChange={handleInputs}>
+                                                            defaultValue={inputsForm.responsable}
+                                                            onChange={handleInputs}>
                                                             {
                                                                 users?.map((item) => {
                                                                     return <option value={item.first_name}
-                                                                                   name={item.first_name}
-                                                                                   key={item.id}>{item.first_name}</option>
+                                                                        name={item.first_name}
+                                                                        key={item.id}>{item.first_name}</option>
                                                                 })
                                                             }
                                                         </select>
@@ -220,13 +220,13 @@ export default function UpdateTask() {
                                                     <div className="field">
                                                         <label htmlFor="status">Status</label>
                                                         <select name="status" id="status"
-                                                                defaultValue={inputsForm.status}
-                                                                onChange={handleInputs}>
+                                                            defaultValue={inputsForm.status}
+                                                            onChange={handleInputs}>
                                                             {
                                                                 statusData?.map((item) => {
                                                                     return <option value={item._status}
-                                                                                   name={item._status}
-                                                                                   key={item.id}>{item._status}</option>
+                                                                        name={item._status}
+                                                                        key={item.id}>{item._status}</option>
                                                                 })
                                                             }
                                                         </select>
@@ -243,7 +243,7 @@ export default function UpdateTask() {
                         }
                     </>
                     :
-                    <Login/>
+                    <Login />
 
             }
         </>
